@@ -110,9 +110,12 @@ services:
       resources:
         reservations:
           devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+            - driver: cdi
+              device_ids:
+              - nvidia.com/gpu=all
+            # - driver: nvidia
+            #   count: 1
+            #   capabilities: [gpu]
 
   ollama-pull-llama-cpu:
     profiles: ["cpu"]
