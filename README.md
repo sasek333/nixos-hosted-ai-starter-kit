@@ -42,21 +42,32 @@ Engineering world, handles large amounts of data safely.
 ```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
+cp .env.example .env # you should update secrets and passwords inside
 ```
 
 ### Running n8n using Docker Compose
 
 #### For Nvidia GPU users
 
-```
+```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
+cp .env.example .env # you should update secrets and passwords inside
 docker compose --profile gpu-nvidia up
 ```
 
 > [!NOTE]
 > If you have not used your Nvidia GPU with Docker before, please follow the
 > [Ollama Docker instructions](https://github.com/ollama/ollama/blob/main/docs/docker.md).
+
+### For AMD GPU users on Linux
+
+```bash
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
+cp .env.example .env # you should update secrets and passwords inside
+docker compose --profile gpu-amd up
+```
 
 #### For Mac / Apple Silicon users
 
@@ -72,20 +83,30 @@ If you want to run Ollama on your mac, check the
 [Ollama homepage](https://ollama.com/)
 for installation instructions, and run the starter kit as follows:
 
-```
+```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
+cp .env.example .env # you should update secrets and passwords inside
 docker compose up
 ```
 
-After you followed the quick start set-up below, change the Ollama credentials
-by using `http://host.docker.internal:11434/` as the host.
+##### For Mac users running OLLAMA locally
+
+If you're running OLLAMA locally on your Mac (not in Docker), you need to modify the OLLAMA_HOST environment variable
+
+1. Set OLLAMA_HOST to `host.docker.internal:11434` in your .env file. 
+2. Additionally, after you see "Editor is now accessible via: <http://localhost:5678/>":
+
+    1. Head to <http://localhost:5678/home/credentials>
+    2. Click on "Local Ollama service"
+    3. Change the base URL to "http://host.docker.internal:11434/"
 
 #### For everyone else
 
-```
+```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
+cp .env.example .env # you should update secrets and passwords inside
 docker compose --profile cpu up
 ```
 
@@ -98,7 +119,7 @@ After completing the installation steps above, simply follow the steps below to 
    have to do this once.
 2. Open the included workflow:
    <http://localhost:5678/workflow/srOnR8PAY3u4RSwb>
-3. Select **Test workflow** to start running the workflow.
+3. Click the **Chat** button at the bottom of the canvas, to start running the workflow.
 4. If this is the first time you’re running the workflow, you may need to wait
    until Ollama finishes downloading Llama3.2. You can inspect the docker
    console logs to check on the progress.
@@ -128,9 +149,9 @@ docker compose --profile gpu-nvidia pull
 docker compose create && docker compose --profile gpu-nvidia up
 ```
 
-### For Mac / Apple Silicon users
+* ### For Mac / Apple Silicon users
 
-```
+```bash
 docker compose pull
 docker compose create && docker compose up
 ```
@@ -160,7 +181,7 @@ and nodes. If you run into an issue, go to [support](#support).
 ## 🛍️ More AI templates
 
 For more AI workflow ideas, visit the [**official n8n AI template
-gallery**](https://n8n.io/workflows/?categories=AI). From each workflow,
+gallery**](https://n8n.io/workflows/categories/ai/). From each workflow,
 select the **Use workflow** button to automatically import the workflow into
 your local n8n instance.
 
